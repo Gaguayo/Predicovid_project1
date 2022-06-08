@@ -33,7 +33,6 @@ names(fatig3)
 fatig3m<-fatig3%>%
   filter(cohort_type==1)
 
-# 941
 
 
 
@@ -46,7 +45,6 @@ fatig<-fatig3m %>%
 fatig0<-fatig%>%
   filter(JOUR=="J0")
 
-# 941-28=913
 
 table(fatig$JOUR, useNA = "ifany")
 
@@ -63,8 +61,6 @@ table(fatig$JOUR, useNA = "ifany")
 
 
 
-# 913
-# 941-913=28
 fatig<-fatig %>%
   filter(age_estimateyears>=18)
 
@@ -169,8 +165,6 @@ fatig0<-fatig%>%
   filter(JOUR=="J0")
 
 
-# 905 
-
 
 
 # I define empty cases as missing and fix problems of decimals
@@ -185,9 +179,9 @@ fatig$temp_myhn[which(fatig$temp_myhn == "38-39")] = 38.5
 fatig$temp_myhn[which(fatig$temp_myhn == "38,0")] = 38.0
 fatig$temp_myhn[which(fatig$temp_myhn == "38.5-39")] = 38.8
 fatig$temp_myhn[which(fatig$temp_myhn == "38.5-39")] = 38.8
-fatig$temp_myhn[which(fatig$temp_myhn == "38°")] = 38.0
+fatig$temp_myhn[which(fatig$temp_myhn == "38Â°")] = 38.0
 fatig$temp_myhn[which(fatig$temp_myhn == "39.2 MAX")] = 39.2
-fatig$temp_myhn[which(fatig$temp_myhn == "39°")] = 39.0
+fatig$temp_myhn[which(fatig$temp_myhn == "39Â°")] = 39.0
 
 fatig$APHA[which(fatig$APHA == "")] = NA
 fatig$APHA[which(fatig$APHA == "/")] = NA
@@ -542,7 +536,7 @@ fatig$JOUR<-NULL
 # Bulding a symptom score
 
 # 1. Fatigue. Question QM2: Comment vous sentez-vous aujourd'hui ?
-# Answer: 1, Je me sens bien | 2, Je me sens fatigué(e) | 3, Je me sens mal
+# Answer: 1, Je me sens bien | 2, Je me sens fatiguÃ©(e) | 3, Je me sens mal
 table(fatig$QM2, useNA = "ifany")
 fatig$fatigue<-NA
 fatig$fatigue[fatig$QM2==1]<-0
@@ -563,7 +557,7 @@ summary(fatig$sleep)
 table(fatig$sleep)
 fatig$QM3<-NULL
 
-# 3 Dry cough Question QM4 Avez-vous une toux sèche ?
+# 3 Dry cough Question QM4 Avez-vous une toux sÃ¨che ?
 # Answer 1, Oui | 0, Non
 table(fatig$QM4, useNA = "ifany")
 fatig$cough<-fatig$QM4
@@ -584,15 +578,15 @@ summary(fatig$throat)
 
 fatig$QM6<-NULL
 
-# 6 Loss of taste/smell QM7 8. Avez-vous noté une forte diminution ou perte de votre 
-# goût ou de votre odorat ?
+# 6 Loss of taste/smell QM7 8. Avez-vous notÃ© une forte diminution ou perte de votre 
+# goÃ»t ou de votre odorat ?
 table(fatig$QM7, useNA = "ifany")
 fatig$smell<-fatig$QM7
 summary(fatig$smell)
 
 fatig$QM7<-NULL
 
-# 7. Diarrhea QM8 Avez-vous de la diarrhée ? Avec au moins 3 selles liquides/molles par jour.
+# 7. Diarrhea QM8 Avez-vous de la diarrhÃ©e ? Avec au moins 3 selles liquides/molles par jour.
 table(fatig$QM8, useNA = "ifany")
 fatig$diarrhea<-fatig$QM8
 summary(fatig$diarrhea)
@@ -628,7 +622,7 @@ summary(fatig$pain)
 fatig$QM11<-NULL
 
 
-# 11 Fever  Avez-vous de la fièvre ?
+# 11 Fever  Avez-vous de la fiÃ¨vre ?
 table(fatig$QM12, useNA = "ifany")
 fatig$fever<-fatig$QM12
 summary(fatig$fever)
@@ -641,15 +635,15 @@ fatig$QM13<-NULL
 # I do not use this question (measured temperature, many missing)
 fatig$QM13A<-NULL
 
-# 12 Difficulty breathing Avez-vous des difficultés respiratoires ?
+# 12 Difficulty breathing Avez-vous des difficultÃ©s respiratoires ?
 table(fatig$QM14, useNA = "ifany")
 fatig$breath<-fatig$QM14
 summary(fatig$breath)
 
 fatig$QM14<-NULL
 
-# 13 Increased breath difficulties  Avez-vous vu apparaître une 
-# gêne respiratoire ou une augmentation de votre gêne respiratoire habituelle ?
+# 13 Increased breath difficulties  Avez-vous vu apparaÃ®tre une 
+# gÃªne respiratoire ou une augmentation de votre gÃªne respiratoire habituelle ?
 table(fatig$QM15, useNA = "ifany")
 fatig$breath_plus<-fatig$QM15
 summary(fatig$breath_plus)
@@ -658,7 +652,7 @@ fatig$QM15<-NULL
 
 
 
-# 14 Difficulties to eat or drink ?  Avez-vous des difficultés importantes 
+# 14 Difficulties to eat or drink ?  Avez-vous des difficultÃ©s importantes 
 # pour vous alimenter ou boire ?
 table(fatig$QM17, useNA = "ifany")
 fatig$eat<-fatig$QM17
@@ -666,7 +660,7 @@ summary(fatig$eat)
 
 fatig$QM17<-NULL
 
-# 15 Avez-vous d'autres symptômes? Other symptoms ?
+# 15 Avez-vous d'autres symptÃ´mes? Other symptoms ?
 table(fatig$QM18, useNA = "ifany")
 fatig$other<-fatig$QM18
 summary(fatig$other)
@@ -676,25 +670,25 @@ fatig$QM18<-NULL
 # I do not use this question: Contact avec d'autres personnes
 fatig$QM19<-NULL
 
-# 16 Avez-vous noté une apparition subite d'éruptions cutanées au niveau 
+# 16 Avez-vous notÃ© une apparition subite d'Ã©ruptions cutanÃ©es au niveau 
 # des mains ou des pieds (par exemple engelures, rougeurs persistantes parfois 
-# douloureuses, lésions d'urticaire passagères) ?
+# douloureuses, lÃ©sions d'urticaire passagÃ¨res) ?
 table(fatig$QM20, useNA = "ifany")
 fatig$skin<-fatig$QM20
 summary(fatig$skin)
 
 fatig$QM20<-NULL
 
-# 17 Avez-vous noté l'apparition d'une conjonctivite ou de douleurs dans 
-# les yeux (rougeurs persistantes au niveau du blanc de l'oil, démangeaisons 
-# au niveau des paupières, sensations de picotements, brûlure, larmoiement fréquent) ?
+# 17 Avez-vous notÃ© l'apparition d'une conjonctivite ou de douleurs dans 
+# les yeux (rougeurs persistantes au niveau du blanc de l'oil, dÃ©mangeaisons 
+# au niveau des paupiÃ¨res, sensations de picotements, brÃ»lure, larmoiement frÃ©quent) ?
 table(fatig$QM21, useNA = "ifany")
 fatig$eyes<-fatig$QM21
 summary(fatig$eyes)
 
 fatig$QM21<-NULL
 # 
-# # 18. Vous êtes à la maison, à l'hôpital
+# # 18. Vous Ãªtes Ã  la maison, Ã  l'hÃ´pital
 # table(fatig$QM1, useNA = "ifany")
 fatig$hospital<-NA
 fatig$hospital[fatig$QM1==2]<-1
